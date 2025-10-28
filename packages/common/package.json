@@ -6,16 +6,18 @@
   "scripts": {
     "build": "tsc -b"
   },
-  "exports":{
-    "./types":"./dist/types.js"
+  "exports": {
+    "./types": "./dist/types.js",
+    "./hash":"./dist/hash.js"
   },
-  
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "zod": "^4.1.11",
-    "@repo/typescript-config":"workspace:*"
+    "@repo/typescript-config": "workspace:*",
+    "@types/bcrypt": "^6.0.0",
+    "bcrypt": "^6.0.0",
+    "zod": "^4.1.11"
   }
 }
