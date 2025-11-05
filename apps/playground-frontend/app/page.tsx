@@ -1,94 +1,131 @@
-import React from "react";
+import { Button } from "@repo/ui/button";
+import { Card } from "@repo/ui/card";
+import { Pencil, Share2, Users2, Sparkles, Github, Download } from "lucide-react";
 import Link from "next/link";
 
-export default function Home(): React.ReactElement {
-  const techList: string[] = [
-    "Next.js",
-    "TypeScript",
-    "WebSockets",
-    "Prisma",
-    "PostgreSQL",
-    "Turborepo",
-  ];
-
+function App() {
   return (
-    <main className="min-h-screen flex items-center justify-center px-5 py-12 bg-gradient-to-b from-[#0f172a] to-[#071032] text-[#e6eef8] font-sans">
-      <section className="w-full max-w-[980px] bg-gradient-to-b from-white/5 to-white/1 rounded-xl p-9 shadow-[0_10px_30px_rgba(2,6,23,0.6)] border border-white/5">
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_340px] gap-6 items-start">
-          <div>
-            <div className="inline-block bg-white/5 px-3 py-1 rounded-full text-sm text-sky-100 mb-3">
-              PlayGround
-            </div>
-
-            <h1 className="text-3xl md:text-4xl leading-tight text-white font-semibold mb-3">
-              Real-time Collaborative Whiteboard & Chat
+    <div className="min-h-screen bg-background">
+      {/* Hero Section */}
+      <header className="relative overflow-hidden">
+        <div className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h1 className="text-4xl font-bold tracking-tight sm:text-6xl text-foreground">
+              Collaborative Whiteboarding
+              <span className="text-primary block">Made Simple</span>
             </h1>
-
-            <p className="text-sky-100/90 mb-5">
-              A collaborative whiteboard and chat app where multiple users draw,
-              message, and interact in real time. Built with Next.js,
-              TypeScript, Prisma and WebSockets inside a Turborepo monorepo.
+            <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
+              Create, collaborate, and share beautiful diagrams and sketches with our intuitive drawing tool. 
+              No sign-up required.
             </p>
-
-            <div>
-              <Link
-                href="/getting-started"
-                aria-label="Get started"
-                className="inline-block bg-gradient-to-r from-indigo-600 to-cyan-400 text-white py-3 px-5 rounded-lg font-semibold no-underline"
-              >
-                Get Started
+            <div className="mt-10 flex items-center justify-center gap-x-6">
+              <Link href={"/signin"}>
+                <Button variant={"primary"} size="lg" className="h-12 px-6">
+                  Sign in
+                  <Pencil className="ml-2 h-4 w-4" />
+                </Button>
               </Link>
-
-              <Link
-                href="/docs"
-                aria-label="Documentation"
-                className="inline-block bg-transparent text-sky-100 border border-white/6 py-2.5 px-4 ml-3 rounded-lg no-underline"
-              >
-                Documentation
+              <Link href="/signup">
+                <Button variant="outline" size="lg" className="h-12 px-6">
+                  Sign up
+                </Button>
               </Link>
-            </div>
-
-            <div className="mt-6">
-              <strong className="text-[#e6eef8] block mb-2">Highlights</strong>
-              <ul className="mt-3 text-sky-100 space-y-2 list-inside">
-                <li>Real-time drawing and messaging with low-latency WebSockets</li>
-                <li>Persistent, type-safe storage using Prisma + PostgreSQL</li>
-                <li>Monorepo with Turborepo remote caching to speed up builds</li>
-                <li>Shared UI and backend packages for consistent DX</li>
-              </ul>
             </div>
           </div>
-
-          <aside className="p-4 rounded-lg bg-white/5">
-            <strong className="block mb-2">Tech Stack</strong>
-
-            <div className="grid gap-3 mt-3">
-              {techList.map((t) => (
-                <div
-                  key={t}
-                  className="px-2 py-2 rounded-md bg-white/2 text-sm"
-                >
-                  {t}
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-5">
-              <strong className="block mb-2">Quick Start</strong>
-              <pre className="bg-black/30 p-3 rounded-md text-sm whitespace-pre-wrap">
-{`pnpm install
-pnpm prisma migrate dev --cwd packages/db
-pnpm dev`}
-              </pre>
-            </div>
-          </aside>
         </div>
+      </header>
 
-        <footer className="mt-7 text-[#98b9ef] text-sm">
-          Built with Next.js, TypeScript, WebSockets and Prisma. Turborepo remote
-          caching reduces build time by ~50%.
-        </footer>
+      {/* Features Section */}
+      <section className="py-24 bg-muted/50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-3">
+            
+            <Card title="Real-time Collaboration" href="/features/real-time-collaboration" className="p-6 border-2 hover:border-primary transition-colors">
+              <div className="flex items-center gap-4">
+                <div className="p-2 rounded-lg bg-primary/10">
+                  <Share2 className="h-6 w-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold">Real-time Collaboration</h3>
+              </div>
+              <p className="mt-4 text-muted-foreground">
+                Work together with your team in real-time. Share your drawings instantly with a simple link.
+              </p>
+            </Card>
+
+            <Card title="Multiplayer Editing" href="/features/multiplayer-editing" className="p-6 border-2 hover:border-primary transition-colors">
+              <div className="flex items-center gap-4">
+                <div className="p-2 rounded-lg bg-primary/10">
+                  <Users2 className="h-6 w-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold">Multiplayer Editing</h3>
+              </div>
+              <p className="mt-4 text-muted-foreground">
+                Multiple users can edit the same canvas simultaneously. See who's drawing what in real-time.
+              </p>
+            </Card>
+
+            <Card title="Smart Drawing" href="/features/smart-drawing" className="p-6 border-2 hover:border-primary transition-colors">
+           
+              <div className="flex items-center gap-4">
+                <div className="p-2 rounded-lg bg-primary/10">
+                  <Sparkles className="h-6 w-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold">Smart Drawing</h3>
+              </div>
+              <p className="mt-4 text-muted-foreground">
+                Intelligent shape recognition and drawing assistance helps you create perfect diagrams.
+              </p>
+           
+            </Card>
+          </div>
+        </div>
       </section>
-    </main>
+
+      {/* CTA Section */}
+      <section className="py-24">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-primary rounded-3xl p-8 sm:p-16">
+            <div className="mx-auto max-w-2xl text-center">
+              <h2 className="text-3xl font-bold tracking-tight text-primary-foreground sm:text-4xl">
+                Ready to start creating?
+              </h2>
+              <p className="mx-auto mt-6 max-w-xl text-lg text-primary-foreground/80">
+                Join thousands of users who are already creating amazing diagrams and sketches.
+              </p>
+              <div className="mt-10 flex items-center justify-center gap-x-6">
+                <Button size="lg" variant="secondary" className="h-12 px-6">
+                  Open Canvas
+                  <Pencil className="ml-2 h-4 w-4" />
+                </Button>
+                <Button variant="outline" size="lg" className="h-12 px-6 bg-transparent text-primary-foreground border-primary-foreground hover:bg-primary-foreground hover:text-primary">
+                  View Gallery
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t">
+        <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
+          <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
+            <p className="text-sm text-muted-foreground">
+              © 2024 Excalidraw Clone. All rights reserved.
+            </p>
+            <div className="flex space-x-6">
+              <a href="https://github.com" className="text-muted-foreground hover:text-primary">
+                <Github className="h-5 w-5" />
+              </a>
+              <a href="#" className="text-muted-foreground hover:text-primary">
+                <Download className="h-5 w-5" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
   );
 }
+
+export default App;
